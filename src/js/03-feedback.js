@@ -1,39 +1,38 @@
 import throttle from 'lodash.throttle';
 
-const form = document.querySelector('.feedback-form');
+const STORAGE_KEY = 'feedback-form-state';
+let formData = {};
+const refs = {
+    form: document.querySelector('.feedback-form'),
+    input: document.querySelector('input'),
+    textarea: document.querySelector('textarea'),
+};
 
-function onFormSubmit(event) {
-  event.preventDefault();
+refs.form.addEventListener('submit', onFormSubmit);
+refs.form.addEventListener('input', throttle(onFormInput, 500));
 
-  const formElements = event.currentTarget.elements;
-  const email = formElements.email.value;
-  const message = formElements.message.value;
+updatePage();
 
-  function sendForm() {
-    const formData = {
-      email,
-      message,
-    };
-    console.log(formData);
-    event.currentTarget.reset();
-    localStorage.removeItem('feedback-form-state');
-  }
+function onFormSubmit(evt) {
+    evt.preventDefault();
+    if (input.value === "" || textarea.value === "") {
+        return alert("Please fill in all the fields!");
+    }
+    evt.currentTarget.reset();
+    localStorage.removeItem(STORAGE_KEY);
+};
 
-  sendForm();
-}
+function onFormInput(evt) {
+    formData[evt.target.name] = evt.target.value;
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(obj));
+};
 
-function onInputFill(event) {
-  formData[event.target.name] = event.target.value;
-  localStorage.setItem('feedback-form-state', JSON.stringify(formData));
-}
-
-const formData = {};
-const savedInLocal = JSON.parse(localStorage.getItem('feedback-form-state'));
-
-if (savedInLocal) {
-  form.email.value = savedInLocal.email;
-  form.message.value = savedInLocal.message;
-}
-
-form.addEventListener('input', throttle(onInputFill, 500));
-form.addEventListener('submit', onFormSubmit);
+function updatePage() {
+    const savedData = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    if (savedData) {
+        input.value = savedData.email || "";
+        formData.email = savedDta.email || "";
+        textarea.value = saveaData.message || "";
+        formData.message = savedData.message || ""; 
+    }
+};
