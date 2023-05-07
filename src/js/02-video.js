@@ -21,17 +21,5 @@ const timeStart = localStorage.getItem('videoplayer-current-time');
 
 if (timeStart) {
   player
-    .setCurrentTime(timeStart)
-    .then(function (seconds) {
-  
-    })
-    .catch(function (error) {
-      switch (error.name) {
-        case 'RangeError':
-          break;
-
-        default:
-          break;
-      }
-    });
+    .setCurrentTime(timeStart);
 }
