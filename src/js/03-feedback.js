@@ -9,11 +9,8 @@ function onFormSubmit(event) {
   const email = formElements.email.value;
   const message = formElements.message.value;
 
-  if (email || message === "") {
-      console.log('Please fill in all fields before submitting.');
-
-  } else {
-        function sendForm() {
+  if (email && message === '') {
+    function sendForm() {
       const formData = {
         email,
         message,
@@ -24,8 +21,10 @@ function onFormSubmit(event) {
     }
 
     sendForm();
-  };
-};
+  } else {
+    console.log('Please fill in all fields before submitting.');
+  }
+}
 
 function onInputFill(event) {
   formData[event.target.name] = event.target.value;
