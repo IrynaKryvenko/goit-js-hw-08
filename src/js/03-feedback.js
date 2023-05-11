@@ -9,22 +9,25 @@ function onFormSubmit(event) {
   const email = formElements.email.value;
   const message = formElements.message.value;
 
-  if (email && message) {
-    function sendForm() {
-      const formData = {
-        email,
-        message,
-      };
-      console.log(formData);
-      event.currentTarget.reset();
-      localStorage.removeItem('feedback-form-state');
-    }
 
-    sendForm();
-  } else {
-    console.log('Please fill in all fields before submitting.');
+  if (!email || !message) {
+    console.log('Please fill out all required fields.');
+    return;
   }
+
+  function sendForm() {
+    const formData = {
+      email,
+      message,
+    };
+    console.log(formData);
+    event.currentTarget.reset();
+    localStorage.removeItem('feedback-form-state');
+  }
+
+  sendForm();
 }
+
 
 function onInputFill(event) {
   formData[event.target.name] = event.target.value;
