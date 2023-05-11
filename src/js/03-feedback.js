@@ -10,7 +10,7 @@ function onFormSubmit(event) {
   const message = formElements.message.value;
 
   if (email && message === "") {
-      windows.alert('Please fill in all fields before submitting.');
+      window.alert('Please fill in all fields before submitting.');
 
   } else {
         function sendForm() {
