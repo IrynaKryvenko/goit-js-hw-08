@@ -24,6 +24,7 @@ if (timeStart) {
     .setCurrentTime(timeStart)
     .then(function (seconds) {
     })
-    .catch(function (error))
-  console.log('error');
+    .catch(function (error) {
+      console.log('error')
+    });
 };
