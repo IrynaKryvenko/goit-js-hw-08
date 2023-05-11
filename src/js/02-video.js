@@ -17,5 +17,13 @@ const onTimeupdate = function ({ seconds }) {
 };
 
 player.on('timeupdate', throttle(onTimeupdate, 1000));
+const timeStart = localStorage.getItem('videoplayer-current-time');
 
-player.setCurrentTime(localStorage.getItem('videoplayer-current-time'));
+if (timeStart) {
+  player
+    .setCurrentTime(timeStart)
+    .then(function (seconds) {
+    })
+    .catch(function (error))
+  console.log('error');
+};
