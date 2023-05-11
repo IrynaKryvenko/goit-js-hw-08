@@ -9,17 +9,21 @@ function onFormSubmit(event) {
   const email = formElements.email.value;
   const message = formElements.message.value;
 
-  function sendForm() {
-    const formData = {
-      email,
-      message,
-    };
-    console.log(formData);
-    event.currentTarget.reset();
-    localStorage.removeItem('feedback-form-state');
-  }
+  if (email && message) {
+    function sendForm() {
+      const formData = {
+        email,
+        message,
+      };
+      console.log(formData);
+      event.currentTarget.reset();
+      localStorage.removeItem('feedback-form-state');
+    }
 
-  sendForm();
+    sendForm();
+  } else {
+    console.log('Please fill in all fields before submitting.');
+  }
 }
 
 function onInputFill(event) {
@@ -37,3 +41,4 @@ if (savedInLocal) {
 
 form.addEventListener('input', throttle(onInputFill, 500));
 form.addEventListener('submit', onFormSubmit);
+
