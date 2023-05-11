@@ -9,7 +9,7 @@ function onFormSubmit(event) {
   const email = formElements.email.value;
   const message = formElements.message.value;
 
-  if (email && message === "") {
+  if (email || message === "") {
       window.alert('Please fill in all fields before submitting.');
 
   } else {
