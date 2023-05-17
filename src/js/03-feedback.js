@@ -11,8 +11,8 @@ function onFormSubmit(event) {
 
   function sendForm() {
     const formData = {
-      email,
-      message,
+      email: '',
+      message: '',
     };
     console.log(formData);
     event.currentTarget.reset();
@@ -31,8 +31,8 @@ const formData = {};
 const savedInLocal = JSON.parse(localStorage.getItem('feedback-form-state'));
 
 if (savedInLocal) {
-  form.email.value = savedInLocal.email;
-  form.message.value = savedInLocal.message;
+  form.email.value = savedInLocal.email || '';
+  form.message.value = savedInLocal.message || '';
 };
 
 function validateForm() {
